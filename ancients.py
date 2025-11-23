@@ -283,25 +283,25 @@ def check_api_connection():
         return False
 
 @st.cache_data
-def get_character_prompt(character_config: CharacterConfig):
+def get_character_prompt(_character_config: CharacterConfig):
     """
     Get system prompt for a character, with inclusive language guidance.
 
     Args:
-        character_config: CharacterConfig object for the character
+        _character_config: CharacterConfig object for the character (underscore prefix to skip hashing)
 
     Returns:
         Complete system prompt string
     """
     try:
-        prompt = character_config.get_system_prompt()
+        prompt = _character_config.get_system_prompt()
         # Add inclusive language guidance
         prompt += "\n\nWhen responding to users, consider their name and potential gender implications. Avoid making assumptions based on stereotypes and strive for inclusive language. Adapt your language and examples to be appropriate for all users, regardless of their perceived gender."
         return prompt
     except Exception as e:
         logger.error(f"Error loading character prompt: {e}")
         # Fallback to basic prompt
-        return character_config._generate_fallback_prompt() + "\n\nWhen responding to users, consider their name and potential gender implications. Avoid making assumptions based on stereotypes and strive for inclusive language."
+        return _character_config._generate_fallback_prompt() + "\n\nWhen responding to users, consider their name and potential gender implications. Avoid making assumptions based on stereotypes and strive for inclusive language."
 
 # DEPRECATED: Old function kept for compatibility during migration
 def get_patrick_prompt():
