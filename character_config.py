@@ -138,11 +138,14 @@ class CharacterConfig:
         guidance = self.config.get('temperature_guidance', {})
 
         if temperature >= 0.85:
-            return guidance.get('high', '')
+            high_guidance = guidance.get('high', {})
+            return high_guidance.get('instruction', '') if isinstance(high_guidance, dict) else str(high_guidance)
         elif temperature <= 0.5:
-            return guidance.get('low', '')
+            low_guidance = guidance.get('low', {})
+            return low_guidance.get('instruction', '') if isinstance(low_guidance, dict) else str(low_guidance)
         else:
-            return guidance.get('medium', '')
+            medium_guidance = guidance.get('medium', {})
+            return medium_guidance.get('instruction', '') if isinstance(medium_guidance, dict) else str(medium_guidance)
 
     # === File Paths ===
 
