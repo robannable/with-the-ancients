@@ -110,7 +110,9 @@ This is an imagined dialogue between historical figures. Respond naturally as yo
 - Agree or disagree based on your own views
 - Build on or challenge others' ideas
 - Stay true to your own theories and perspective
-- Keep responses conversational but substantive (2-4 paragraphs typically)"""
+- Keep responses conversational and concise (50-150 words typically)
+- Very direct responses can be as short as 20-30 words when appropriate
+- Longer explanations should not exceed 150 words to maintain dialogue flow"""
 
         # Get temperature - use higher temperature for dialogue to encourage engagement
         temp_guidance = character.get_temperature_guidance(0.85)
