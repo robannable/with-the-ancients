@@ -1025,9 +1025,9 @@ if 'response_evaluator' not in st.session_state:
     from admin_dashboard import ResponseEvaluator
     st.session_state.response_evaluator = ResponseEvaluator()
 
-# Streamlit UI - use current character's page title
+# Streamlit UI
 current_char = st.session_state.current_character
-st.title(current_char.get_page_title())
+st.title("With The Ancients...")
 
 # Sidebar - Conversation Mode Selection
 st.sidebar.header("Conversation Mode")
