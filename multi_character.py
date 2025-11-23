@@ -379,9 +379,25 @@ class MultiCharacterResponseGenerator:
                     )
                 return str(content)
             elif "message" in response_json and "content" in response_json["message"]:
-                return response_json["message"]["content"]
+                content = response_json["message"]["content"]
+                # Handle case where content is a list of content blocks
+                if isinstance(content, list):
+                    return " ".join(
+                        block.get("text", "")
+                        for block in content
+                        if isinstance(block, dict) and "text" in block
+                    )
+                return str(content)
             elif "choices" in response_json and len(response_json["choices"]) > 0:
-                return response_json["choices"][0]["message"]["content"]
+                content = response_json["choices"][0]["message"]["content"]
+                # Handle case where content is a list of content blocks
+                if isinstance(content, list):
+                    return " ".join(
+                        block.get("text", "")
+                        for block in content
+                        if isinstance(block, dict) and "text" in block
+                    )
+                return str(content)
 
         # Fallback
         return str(response_json)
